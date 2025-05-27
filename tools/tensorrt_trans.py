@@ -30,7 +30,10 @@ def main():
     engine_path = default_engine_path
 
     # Export the model to TensorRT format
-    model.export(format="engine", imgsz=args.imgsz, workspace=args.workspace, half=args.half, int8=args.int8)
+    if args.int8 == False:
+        model.export(format="engine", imgsz=args.imgsz, workspace=args.workspace, half=args.half, int8=args.int8)
+    else:
+        model.export(format="engine", imgsz=args.imgsz, workspace=args.workspace, half=False, int8=args.int8, data="DOTA_small.yaml")
 
     if args.output != None:
         new_engine_path = os.path.join(os.path.dirname(args.model), args.output)
