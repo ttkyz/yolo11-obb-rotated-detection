@@ -1,0 +1,1 @@
+# yolo11-obb-rotated-detection
